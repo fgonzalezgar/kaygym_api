@@ -10,10 +10,10 @@
         :root {
             --primary: #FF6A00;
             --primary-hover: #ff8533;
-            --bg-dark: #121212;
-            --bg-card: #1E1E1E;
-            --text-light: #ffffff;
-            --text-muted: #a0a0a0;
+            --bg-dark: #ffffff;
+            --bg-card: #ffffff;
+            --text-light: #333333;
+            --text-muted: #666666;
         }
 
         body {
@@ -32,11 +32,11 @@
             background-color: var(--bg-card);
             padding: 3rem;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 106, 0, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08), 0 0 40px rgba(255, 106, 0, 0.05);
             text-align: center;
             max-width: 500px;
             width: 90%;
-            border: 1px solid rgba(255, 106, 0, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             animation: fadeIn 1s ease-out;
         }
 
@@ -121,10 +121,10 @@
         }
 
         .info-card {
-            background-color: rgba(255, 255, 255, 0.03);
+            background-color: rgba(0, 0, 0, 0.02);
             padding: 1rem;
             border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
 
         .info-label {
@@ -158,33 +158,6 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 106, 0, 0.4);
-        }
-
-        .instructions {
-            margin-top: 2rem;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-
-        .instructions h3 {
-            color: white;
-            margin-top: 0;
-            font-size: 1rem;
-        }
-
-        .instructions code {
-            color: var(--primary);
-            background: rgba(255, 106, 0, 0.1);
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 5px 0;
-            font-family: monospace;
         }
 
         @keyframes pulse {
@@ -226,8 +199,6 @@
             <img src="/images/KAYGYM_LOGO.png" alt="KayGym Logo" class="logo">
         </div>
 
-        <h1>KAY<span>GYM</span> API</h1>
-
         <div class="status-badge">
             <div class="dot"></div>
             Servidor Online
@@ -245,17 +216,6 @@
         </div>
 
         <a href="/api/health" class="btn">Ver JSON API (Health)</a>
-
-        <div class="instructions" style="text-align: left;">
-            <h3>¿Cómo subir la imagen aquí?</h3>
-            <ol style="padding-left: 20px; margin-bottom:0;">
-                <li>Guarda tu imagen (ej. <code>logo.png</code>) en la carpeta del
-                    backend:<br><code>/public/images/</code></li>
-                <li>Abre el archivo <code>public/index.html</code> (este archivo) desde tu editor de código.</li>
-                <li>Borra el código del <strong>placeholder</strong> ("Tu Logo Aquí").</li>
-                <li>Descomenta la etiqueta <code>&lt;img&gt;</code> que apunta a <code>/images/logo.png</code>.</li>
-            </ol>
-        </div>
     </div>
 
     <script>
