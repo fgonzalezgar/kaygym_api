@@ -41,13 +41,13 @@
         }
 
         .logo-container {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
 
         .logo {
-            max-width: 200px;
+            max-width: 350px;
             height: auto;
             border-radius: 10px;
             /* Vibrating hover effect we did previously */
@@ -160,6 +160,28 @@
             box-shadow: 0 6px 20px rgba(255, 106, 0, 0.4);
         }
 
+        .footer {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
         @keyframes pulse {
             0% {
                 transform: scale(1);
@@ -218,7 +240,15 @@
         <a href="/api/health" class="btn">Ver JSON API (Health)</a>
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        &copy; <span id="currentYear"></span> KAYGYM. Todos los derechos reservados.<br>
+    </div>
+
     <script>
+        // Establecer el año actual en el footer
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+
         // Fetch health data dynamically to populate the cards
         fetch('/api/health')
             .then(res => res.json())
