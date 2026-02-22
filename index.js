@@ -10,6 +10,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Servir archivos estáticos (como la página principal y las imágenes)
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Ruta de health check para comprobar el estado de la API
+app.get('/api/health', (req, res) => {
+    res.json({
+        api: 'KAYGYM API',
+        status: 'online',
+        version: '1.0.0',
+        environment: process.env.NODE_ENV || 'development',
+        timestamp: new Date().toISOString()
+    });
+});
+
 // Routes
 app.use('/api', authRoutes);
 app.use('/api/gyms', gymRoutes);

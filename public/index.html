@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAYGYM API - En Línea</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6A00;
+            --primary-hover: #ff8533;
+            --bg-dark: #121212;
+            --bg-card: #1E1E1E;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background-color: var(--bg-card);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 106, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 106, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .logo-container {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            /* Vibrating hover effect we did previously */
+            transition: transform 0.2s cubic-bezier(.36, .07, .19, .97);
+        }
+
+        .logo:hover {
+            transform: translate3d(2px, 2px, 0) rotate(2deg);
+        }
+
+        .logo-placeholder {
+            width: 200px;
+            height: 80px;
+            background-color: rgba(255, 106, 0, 0.1);
+            border: 2px dashed var(--primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .logo-placeholder:hover {
+            background-color: rgba(255, 106, 0, 0.2);
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: var(--text-light);
+            font-size: 2.5rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 800;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: rgba(46, 204, 113, 0.1);
+            color: #2ecc71;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(46, 204, 113, 0.2);
+        }
+
+        .status-badge .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #2ecc71;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 10px #2ecc71;
+            animation: pulse 1.5s infinite;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), #ff4500);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 106, 0, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 106, 0, 0.4);
+        }
+
+        .instructions {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .instructions h3 {
+            color: white;
+            margin-top: 0;
+            font-size: 1rem;
+        }
+
+        .instructions code {
+            color: var(--primary);
+            background: rgba(255, 106, 0, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 5px 0;
+            font-family: monospace;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- ÁREA DEL LOGO -->
+        <div class="logo-container">
+            <img src="/images/KAYGYM_LOGO.png" alt="KayGym Logo" class="logo">
+        </div>
+
+        <h1>KAY<span>GYM</span> API</h1>
+
+        <div class="status-badge">
+            <div class="dot"></div>
+            Servidor Online
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <span class="info-label">Versión</span>
+                <span class="info-value" id="version">1.0.0</span>
+            </div>
+            <div class="info-card">
+                <span class="info-label">Entorno</span>
+                <span class="info-value" id="environment">development</span>
+            </div>
+        </div>
+
+        <a href="/api/health" class="btn">Ver JSON API (Health)</a>
+
+        <div class="instructions" style="text-align: left;">
+            <h3>¿Cómo subir la imagen aquí?</h3>
+            <ol style="padding-left: 20px; margin-bottom:0;">
+                <li>Guarda tu imagen (ej. <code>logo.png</code>) en la carpeta del
+                    backend:<br><code>/public/images/</code></li>
+                <li>Abre el archivo <code>public/index.html</code> (este archivo) desde tu editor de código.</li>
+                <li>Borra el código del <strong>placeholder</strong> ("Tu Logo Aquí").</li>
+                <li>Descomenta la etiqueta <code>&lt;img&gt;</code> que apunta a <code>/images/logo.png</code>.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Fetch health data dynamically to populate the cards
+        fetch('/api/health')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('version').innerText = data.version;
+                document.getElementById('environment').innerText = data.environment;
+            })
+            .catch(err => console.error("Error fetching health:", err));
+    </script>
+</body>
+
+</html>
